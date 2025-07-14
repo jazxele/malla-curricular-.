@@ -58,8 +58,7 @@
       opacity: 0.6;
     }
     .curso.aprobado {
-      background: #8d92ac;
-      color: black;
+      background: #8d92ac !important;
       text-decoration: line-through;
     }
   </style>
@@ -67,106 +66,112 @@
 <body>
   <h1>MALLA CURRICULAR DE CONTABILIDAD Y FINANZAS ·₊̣̇.</h1>
   <div class="contenedor" id="contenedor"></div>
+<script>
+  const prerequisitos = {
+    "Matemática Básica": ["Complementos de Matemática"],
+    "Contabilidad Financiera 2": ["Contabilidad Financiera 1"],
+    "Comunicación 2": ["Comunicación 1"],
+    "Matemática Financiera": ["Matemática Básica"],
+    "Informática para Negocios": ["Herramientas Informáticas"],
+    "Contabilidad Financiera 3": ["Contabilidad Financiera 2"],
+    "Probabilidad y Estadística": ["Matemática Básica"],
+    "Comunicación 3": ["Comunicación 2"],
+    "Información de Costos 1": ["Contabilidad Financiera 3"],
+    "Informática Contable": ["Informática para Negocios"],
+    "Empleabilidad": ["Desarrollo del Talento"],
+    "Pre Beginner 2": ["Pre Beginner 1"],
+    "Microeconomía para Administradores": ["Complementos de Matemática"],
+    "Información Financiera 1": ["Contabilidad Financiera 3"],
+    "Análisis y Evaluación Financiera": ["Información de Costos 1"],
+    "Metodología de la Investigación": ["Metodología Universitaria"],
+    "English for Business": ["Pre Beginner 2"],
+    "Información de Costos 2": ["Información de Costos 1"],
+    "Tributación 1": ["Derecho Empresarial y Laboral"],
+    "Proyecto Social": ["Responsabilidad Social"],
+    "Finanzas": ["Matemática Financiera"],
+    "Información Financiera 2": ["Información Financiera 1"],
+    "Tributación 2": ["Tributación 1"],
+    "Planeamiento Financiero": ["Análisis y Evaluación Financiera"],
+    "Gestión Estratégica": ["Análisis y Evaluación Financiera"],
+    "Análisis de Inversión y Financiamiento": ["Finanzas"],
+    "Auditoría Financiera 1": ["Información Financiera 2"],
+    "Contabilidad de Instituciones Financieras": ["Planeamiento Financiero"],
+    "Taller Tributario": ["Tributación 2"],
+    "Proyectos de Inversión": ["Gestión Estratégica"],
+    "Seminario de Costos para la Gestión": ["Planeamiento Financiero"],
+    "Auditoría Financiera 2": ["Auditoría Financiera 1"],
+    "Prácticas Preprofesionales": ["Empleabilidad"],
+    "Tesis": ["Metodología de la Investigación"],
+    "Contabilidad Gubernamental": ["Taller Tributario"],
+    "Electivo 1": ["150 CRÉDITOS"],
+    "Contabilidad de Gerencia": ["Contabilidad Gubernamental"],
+    "Trabajo de Investigación": ["Tesis"],
+    "Electivo 2": ["Electivo 1"]
+  };
 
-  <script>
-    const prerequisitos = {
-      "Matemática Básica": ["Complementos de Matemática"],
-      "Contabilidad Financiera 2": ["Contabilidad Financiera 1"],
-      "Comunicación 2": ["Comunicación 1"],
-      "Matemática Financiera": ["Matemática Básica"],
-      "Informática para Negocios": ["Herramientas Informáticas"],
-      "Contabilidad Financiera 3": ["Contabilidad Financiera 2"],
-      "Probabilidad y Estadística": ["Matemática Básica"],
-      "Comunicación 3": ["Comunicación 2"],
-      "Información de Costos 1": ["Contabilidad Financiera 3"],
-      "Informática Contable": ["Informática para Negocios"],
-      "Empleabilidad": ["Desarrollo del Talento"],
-      "Pre Beginner 2": ["Pre Beginner 1"],
-      "Microeconomía para Administradores": ["Complementos de Matemática"],
-      "Información Financiera 1": ["Contabilidad Financiera 3"],
-      "Análisis y Evaluación Financiera": ["Información de Costos 1"],
-      "Metodología de la Investigación": ["Metodología Universitaria"],
-      "English for Business": ["Pre Beginner 2"],
-      "Información de Costos 2": ["Información de Costos 1"],
-      "Tributación 1": ["Derecho Empresarial y Laboral"],
-      "Proyecto Social": ["Responsabilidad Social"],
-      "Finanzas": ["Matemática Financiera"],
-      "Información Financiera 2": ["Información Financiera 1"],
-      "Tributación 2": ["Tributación 1"],
-      "Planeamiento Financiero": ["Análisis y Evaluación Financiera"],
-      "Gestión Estratégica": ["Análisis y Evaluación Financiera"],
-      "Análisis de Inversión y Financiamiento": ["Finanzas"],
-      "Auditoría Financiera 1": ["Información Financiera 2"],
-      "Contabilidad de Instituciones Financieras": ["Planeamiento Financiero"],
-      "Taller Tributario": ["Tributación 2"],
-      "Proyectos de Inversión": ["Gestión Estratégica"],
-      "Seminario de Costos para la Gestión": ["Planeamiento Financiero"],
-      "Auditoría Financiera 2": ["Auditoría Financiera 1"],
-      "Prácticas Preprofesionales": ["Empleabilidad"],
-      "Tesis": ["Metodología de la Investigación"],
-      "Contabilidad Gubernamental": ["Taller Tributario"],
-      "Electivo 1": ["150 CRÉDITOS"],
-      "Contabilidad de Gerencia": ["Contabilidad Gubernamental"],
-      "Trabajo de Investigación": ["Tesis"],
-      "Electivo 2": ["Electivo 1"]
-    };
+  const cursos = [
+    { ciclo: 'PRIMER CICLO', materias: ['Desarrollo del Talento', 'Complementos de Matemática', 'Contabilidad Financiera 1', 'Derecho Empresarial y Laboral', 'Comunicación 1', 'Ciudadanía Global'] },
+    { ciclo: 'SEGUNDO CICLO', materias: ['Matemática Básica', 'Contabilidad Financiera 2', 'Metodología Universitaria', 'Responsabilidad Social', 'Herramientas Informáticas', 'Comunicación 2'] },
+    { ciclo: 'TERCER CICLO', materias: ['Matemática Financiera', 'Informática para Negocios', 'Contabilidad Financiera 3', 'Probabilidad y Estadística', 'Pre Beginner 1', 'Comunicación 3'] },
+    { ciclo: 'CUARTO CICLO', materias: ['Información de Costos 1', 'Informática Contable', 'Empleabilidad', 'Pre Beginner 2', 'Microeconomía para Administradores', 'Información Financiera 1'] },
+    { ciclo: 'QUINTO CICLO', materias: ['Análisis y Evaluación Financiera', 'Metodología de la Investigación', 'English for Business', 'Información de Costos 2', 'Tributación 1', 'Proyecto Social'] },
+    { ciclo: 'SEXTO CICLO', materias: ['Finanzas', 'Información Financiera 2', 'Tributación 2', 'Planeamiento Financiero', 'Gestión Estratégica'] },
+    { ciclo: 'SÉPTIMO CICLO', materias: ['Análisis de Inversión y Financiamiento', 'Auditoría Financiera 1', 'Contabilidad de Instituciones Financieras', 'Taller Tributario', 'Proyectos de Inversión'] },
+    { ciclo: 'OCTAVO CICLO', materias: ['Seminario de Costos para la Gestión', 'Auditoría Financiera 2', 'Prácticas Preprofesionales'] },
+    { ciclo: 'NOVENO CICLO', materias: ['Tesis', 'Contabilidad Gubernamental', 'Electivo 1'] },
+    { ciclo: 'DÉCIMO CICLO', materias: ['Contabilidad de Gerencia', 'Trabajo de Investigación', 'Electivo 2'] }
+  ];
 
-    const cursos = [
-      { ciclo: 'PRIMER CICLO', materias: ['Desarrollo del Talento', 'Complementos de Matemática', 'Contabilidad Financiera 1', 'Derecho Empresarial y Laboral', 'Comunicación 1', 'Ciudadanía Global'] },
-      { ciclo: 'SEGUNDO CICLO', materias: ['Matemática Básica', 'Contabilidad Financiera 2', 'Metodología Universitaria', 'Responsabilidad Social', 'Herramientas Informáticas', 'Comunicación 2'] },
-      { ciclo: 'TERCER CICLO', materias: ['Matemática Financiera', 'Informática para Negocios', 'Contabilidad Financiera 3', 'Probabilidad y Estadística', 'Pre Beginner 1', 'Comunicación 3'] },
-      { ciclo: 'CUARTO CICLO', materias: ['Información de Costos 1', 'Informática Contable', 'Empleabilidad', 'Pre Beginner 2', 'Microeconomía para Administradores', 'Información Financiera 1'] },
-      { ciclo: 'QUINTO CICLO', materias: ['Análisis y Evaluación Financiera', 'Metodología de la Investigación', 'English for Business', 'Información de Costos 2', 'Tributación 1', 'Proyecto Social'] },
-      { ciclo: 'SEXTO CICLO', materias: ['Finanzas', 'Información Financiera 2', 'Tributación 2', 'Planeamiento Financiero', 'Gestión Estratégica'] },
-      { ciclo: 'SÉPTIMO CICLO', materias: ['Análisis de Inversión y Financiamiento', 'Auditoría Financiera 1', 'Contabilidad de Instituciones Financieras', 'Taller Tributario', 'Proyectos de Inversión'] },
-      { ciclo: 'OCTAVO CICLO', materias: ['Seminario de Costos para la Gestión', 'Auditoría Financiera 2', 'Prácticas Preprofesionales'] },
-      { ciclo: 'NOVENO CICLO', materias: ['Tesis', 'Contabilidad Gubernamental', 'Electivo 1'] },
-      { ciclo: 'DÉCIMO CICLO', materias: ['Contabilidad de Gerencia', 'Trabajo de Investigación', 'Electivo 2'] }
-    ];
+  const contenedor = document.getElementById('contenedor');
+  const estadoCursos = {};
 
-    const contenedor = document.getElementById('contenedor');
-    const estadoCursos = {};
+  cursos.forEach(bloque => {
+    const div = document.createElement('div');
+    div.classList.add('ciclo');
 
-    cursos.forEach(bloque => {
-      const div = document.createElement('div');
-      div.classList.add('ciclo');
+    const titulo = document.createElement('div');
+    titulo.classList.add('titulo-ciclo');
+    titulo.textContent = bloque.ciclo;
+    div.appendChild(titulo);
 
-      const titulo = document.createElement('div');
-      titulo.classList.add('titulo-ciclo');
-      titulo.textContent = bloque.ciclo;
-      div.appendChild(titulo);
-
-      bloque.materias.forEach(nombre => {
-        const curso = document.createElement('div');
-        curso.classList.add('curso');
-        curso.textContent = nombre;
-        curso.dataset.nombre = nombre;
-        if (prerequisitos[nombre]) curso.classList.add('bloqueado');
-        estadoCursos[nombre] = curso;
-        div.appendChild(curso);
-      });
-
-      contenedor.appendChild(div);
+    bloque.materias.forEach(nombre => {
+      const curso = document.createElement('div');
+      curso.classList.add('curso');
+      curso.textContent = nombre;
+      curso.dataset.nombre = nombre;
+      if (prerequisitos[nombre]) curso.classList.add('bloqueado');
+      estadoCursos[nombre] = curso;
+      div.appendChild(curso);
     });
 
-    function desbloquearCursos() {
-      Object.entries(prerequisitos).forEach(([curso, prereqs]) => {
-        const cursoElem = estadoCursos[curso];
-        if (cursoElem && cursoElem.classList.contains('bloqueado')) {
-          const todosAprobados = prereqs.every(pr => estadoCursos[pr] && estadoCursos[pr].classList.contains('aprobado'));
-          if (todosAprobados) cursoElem.classList.remove('bloqueado');
-        }
-      });
-    }
+    contenedor.appendChild(div);
+  });
 
-    document.addEventListener('click', function (e) {
-      if (e.target.classList.contains('curso')) {
-        if (!e.target.classList.contains('bloqueado')) {
-          e.target.classList.toggle('aprobado');
-          desbloquearCursos();
+  function desbloquearCursos() {
+    Object.entries(prerequisitos).forEach(([curso, prereqs]) => {
+      const cursoElem = estadoCursos[curso];
+      if (cursoElem && cursoElem.classList.contains('bloqueado')) {
+        const todosAprobados = prereqs.every(pr => estadoCursos[pr] && estadoCursos[pr].classList.contains('aprobado'));
+        if (todosAprobados) {
+          cursoElem.classList.remove('bloqueado');
+          cursoElem.style.backgroundColor = "#d9d9d9";
+          cursoElem.style.opacity = "1";
+          cursoElem.style.cursor = "pointer";
         }
       }
     });
-  </script>
+  }
+
+  document.addEventListener('click', function (e) {
+    if (e.target.classList.contains('curso')) {
+      const nombre = e.target.dataset.nombre;
+      if (e.target.classList.contains('bloqueado')) {
+        return; // no hacer nada si está bloqueado
+      }
+      e.target.classList.toggle('aprobado');
+      desbloquearCursos();
+    }
+  });
+</script>
 </body>
 </html>
