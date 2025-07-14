@@ -20,12 +20,20 @@
       font-family: 'Merriweather', serif;
       font-style: italic;
     }
+    #contenedor {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+  gap: 20px;
+  justify-content: center;
+}
+    
     .ciclo {
       background-color: #575d7c;
       border: 3px solid #3a4062;
       border-radius: 10px;
       margin-bottom: 30px;
       padding: 15px;
+      max-width: 350px;
     }
     .titulo-ciclo {
       font-size: 20px;
