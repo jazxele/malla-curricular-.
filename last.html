@@ -124,6 +124,7 @@
 
   const contenedor = document.getElementById('contenedor');
   const estadoCursos = {};
+  const cursosAprobados = new Set(JSON.parse(localStorage.getItem("cursosAprobados")) || []);
 
   cursos.forEach(bloque => {
     const div = document.createElement('div');
@@ -139,7 +140,13 @@
       curso.classList.add('curso');
       curso.textContent = nombre;
       curso.dataset.nombre = nombre;
-      if (prerequisitos[nombre]) curso.classList.add('bloqueado');
+
+      if (cursosAprobados.has(nombre)) {
+        curso.classList.add("aprobado");
+      } else if (prerequisitos[nombre]) {
+        curso.classList.add("bloqueado");
+      }
+
       estadoCursos[nombre] = curso;
       div.appendChild(curso);
     });
@@ -151,7 +158,7 @@
     Object.entries(prerequisitos).forEach(([curso, prereqs]) => {
       const cursoElem = estadoCursos[curso];
       if (cursoElem && cursoElem.classList.contains('bloqueado')) {
-        const todosAprobados = prereqs.every(pr => estadoCursos[pr] && estadoCursos[pr].classList.contains('aprobado'));
+        const todosAprobados = prereqs.every(pr => estadoCursos[pr]?.classList.contains('aprobado'));
         if (todosAprobados) {
           cursoElem.classList.remove('bloqueado');
           cursoElem.style.backgroundColor = "#d9d9d9";
@@ -162,16 +169,27 @@
     });
   }
 
-  document.addEventListener('click', function (e) {
-    if (e.target.classList.contains('curso')) {
+  document.addEventListener("click", function (e) {
+    if (e.target.classList.contains("curso")) {
       const nombre = e.target.dataset.nombre;
-      if (e.target.classList.contains('bloqueado')) {
-        return; // no hacer nada si está bloqueado
+      const esBloqueado = e.target.classList.contains("bloqueado");
+      if (esBloqueado) return;
+
+      e.target.classList.toggle("aprobado");
+
+      if (e.target.classList.contains("aprobado")) {
+        cursosAprobados.add(nombre);
+      } else {
+        cursosAprobados.delete(nombre);
       }
-      e.target.classList.toggle('aprobado');
+
+      localStorage.setItem("cursosAprobados", JSON.stringify([...cursosAprobados]));
       desbloquearCursos();
     }
   });
+
+  // Al cargar la página
+  window.onload = () => desbloquearCursos();
 </script>
 </body>
 </html>
